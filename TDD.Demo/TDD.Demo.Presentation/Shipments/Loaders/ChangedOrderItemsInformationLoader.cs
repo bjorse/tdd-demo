@@ -10,40 +10,39 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
 
         public string GetChangedOrderItemInformation(IEnumerable<ChangedOrderItemResult> changedOrderItems)
         {
-            var result = new List<string>();
+            var result = GetChangedOrderInformation(changedOrderItems).ToArray();
 
-            foreach (var changedOrderItem in changedOrderItems)
+            return result.Any()
+                ? string.Join(Environment.NewLine, new[] {Header}.Concat(result.OrderBy(x => x.Item1).ThenBy(x => x.Item2).Select(x => x.Item2)))
+                : string.Empty;
+        }
+
+        private static IEnumerable<Tuple<int, string>>  GetChangedOrderInformation(IEnumerable<ChangedOrderItemResult> changedItems)
+        {
+            return changedItems.Select(x =>
             {
-                if (changedOrderItem.RemovedFromOrderAndNeedsUnpacking)
+                if (x.RemovedFromOrderAndNeedsUnpacking)
                 {
-                    result.Add(string.Format("The {0} (#{1}) has been packaged but is no longer in the order", changedOrderItem.Item.Name, changedOrderItem.Item.Id));
-                    continue;
+                    return new Tuple<int, string>(4, string.Format("The {0} (#{1}) has been packaged but is no longer in the order", x.Item.Name, x.Item.Id));
                 }
 
-                if (changedOrderItem.RemovedFromOrder)
+                if (x.RemovedFromOrder)
                 {
-                    result.Add(string.Format("The {0} (#{1}) should no longer be packaged", changedOrderItem.Item.Name, changedOrderItem.Item.Id));
-                    continue;
+                    return new Tuple<int, string>(3, string.Format("The {0} (#{1}) should no longer be packaged", x.Item.Name, x.Item.Id));
                 }
 
-                if (changedOrderItem.New)
+                if (x.New)
                 {
-                    result.Add(string.Format("A new order of {0} {1} (#{2}) has been added", changedOrderItem.CurrentQuantity, changedOrderItem.Item.Name, changedOrderItem.Item.Id));
-                    continue;
+                    return new Tuple<int, string>(2, string.Format("A new order of {0} {1} (#{2}) has been added", x.CurrentQuantity, x.Item.Name, x.Item.Id));
                 }
 
-                if (changedOrderItem.PreviousQuantity != changedOrderItem.CurrentQuantity)
+                if (x.PreviousQuantity != x.CurrentQuantity)
                 {
-                    result.Add(string.Format("The quantity of {0} (#{1}) has changed from {2} to {3}", changedOrderItem.Item.Name, changedOrderItem.Item.Id, changedOrderItem.PreviousQuantity, changedOrderItem.CurrentQuantity));
+                    return new Tuple<int, string>(1, string.Format("The quantity of {0} (#{1}) has changed from {2} to {3}", x.Item.Name, x.Item.Id, x.PreviousQuantity, x.CurrentQuantity));
                 }
-            }
 
-            if (result.Any())
-            {
-                result.Insert(0, Header);
-            }
-
-            return string.Join(Environment.NewLine, result);
+                throw new ArgumentException(string.Format("The item #{0} has not been changed!", x.Item.Id));
+            });
         }
     }
 }

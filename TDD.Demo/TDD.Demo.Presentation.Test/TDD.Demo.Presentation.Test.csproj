@@ -49,9 +49,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\GivetEnChangedOrderItemsInformationLoader.cs" />
+    <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärEnInteÄrÄndrad.cs" />
     <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärEnÄrBorttagen.cs" />
     <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärEnÄrBorttagenSomÄrPaketerad.cs" />
     <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärEnÄrNy.cs" />
+    <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärFleraHarÄndrats.cs" />
     <Compile Include="Shipments\ChangedOrderItemsInformationLoaderTests\NärQuantityHarÄndrats.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\GivetEnChangedOrderItemsLoader.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärEnInteÄrÄndrad.cs" />
