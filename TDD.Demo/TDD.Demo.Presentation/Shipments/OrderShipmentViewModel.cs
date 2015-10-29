@@ -38,6 +38,11 @@ namespace TDD.Demo.Presentation.Shipments
             RaisePropertyChanged(() => TotalPrice);
         }
 
+        public string Title
+        {
+            get { return Model != null ? string.Format("Order #{0} shipment", Model.OrderInfo.Id) : string.Empty; }
+        }
+
         private IList<IOrderListItemViewModel> _itemsToPack = new ObservableCollection<IOrderListItemViewModel>();
 
         public IList<IOrderListItemViewModel> ItemsToPack
@@ -141,8 +146,8 @@ namespace TDD.Demo.Presentation.Shipments
                 item.OnSelectionChanged -= OnItemsToPackSelectionChanged;
             }
 
-            ItemsToPack = CreateListItems(model => model.Items.Where(x => !x.IsPackaged));
-            PackagedItems = CreateListItems(model => model.Items.Where(x => x.IsPackaged));
+            ItemsToPack = CreateListItems(items => items.Where(x => !x.IsPackaged));
+            PackagedItems = CreateListItems(items => items.Where(x => x.IsPackaged));
 
             foreach (var item in ItemsToPack)
             {
@@ -158,10 +163,10 @@ namespace TDD.Demo.Presentation.Shipments
             }
         }
 
-        private IList<IOrderListItemViewModel> CreateListItems(Func<OrderShipmentModel, IEnumerable<OrderItemShipmentModel>> query)
+        private IList<IOrderListItemViewModel> CreateListItems(Func<IEnumerable<OrderItemShipmentModel>, IEnumerable<OrderItemShipmentModel>> query)
         {
             return Model != null
-                ? new ObservableCollection<IOrderListItemViewModel>(query(Model).Select(x => _orderListItemViewModelFactory.CreateOrderListItem(x)))
+                ? new ObservableCollection<IOrderListItemViewModel>(query(Model.Items).Select(x => _orderListItemViewModelFactory.CreateOrderListItem(x)))
                 : new ObservableCollection<IOrderListItemViewModel>();
         }
     }

@@ -4,15 +4,12 @@ using System.Collections.ObjectModel;
 
 namespace TDD.Demo.Domain.Orders
 {
-    public class OrderModel : EntityBase
+    public class OrderModel : OrderModelBase
     {
         public OrderModel()
         {
-            OrderInfo = new OrderInfoModel();
             Items = new ObservableCollection<OrderItemModel>();
         }
-
-        public OrderInfoModel OrderInfo { get; set; }
 
         public IList<OrderItemModel> Items { get; set; }
 
@@ -49,7 +46,5 @@ namespace TDD.Demo.Domain.Orders
                 RaisePropertyChanged();
             }
         }
-
-        public int OrderNumber { get { return OrderInfo.Id; } }
     }
 }

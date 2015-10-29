@@ -4,6 +4,11 @@ namespace TDD.Demo.Domain.Orders
 {
     public class OrderItemModel : EntityBase
     {
+        public OrderItemModel()
+        {
+            Item = new ItemModel();
+        }
+
         private ItemModel _item;
 
         public ItemModel Item

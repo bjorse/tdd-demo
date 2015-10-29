@@ -1,4 +1,4 @@
-﻿namespace TDD.Demo.Domain.Orders
+﻿namespace TDD.Demo.Domain
 {
     public class OrderInfoModel : EntityBase
     {

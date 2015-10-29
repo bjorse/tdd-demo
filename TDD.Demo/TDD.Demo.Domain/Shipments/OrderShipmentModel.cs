@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using TDD.Demo.Domain.Orders;
 
 namespace TDD.Demo.Domain.Shipments
 {
-    public class OrderShipmentModel : EntityBase
+    public class OrderShipmentModel : OrderModelBase
     {
         public OrderShipmentModel()
         {
-            OrderInfo = new OrderInfoModel();
             Items = new ObservableCollection<OrderItemShipmentModel>();
         }
-
-        public OrderInfoModel OrderInfo { get; set; }
 
         public IList<OrderItemShipmentModel> Items { get; set; }
 
@@ -51,8 +47,6 @@ namespace TDD.Demo.Domain.Shipments
                 RaisePropertyChanged(() => IsShipped);
             }
         }
-
-        public int OrderNumber { get { return OrderInfo.Id; } }
 
         public bool IsShipped { get { return ShippedDate != null; } }
     }

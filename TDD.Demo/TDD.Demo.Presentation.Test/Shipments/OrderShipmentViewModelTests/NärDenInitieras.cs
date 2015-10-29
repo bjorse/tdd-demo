@@ -14,6 +14,8 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
 {
     public class NärDenInitieras : GivetEnOrderShipmentViewModel
     {
+        private const int OrderNumber = 72;
+        private const string ExpectedTitle = "Order #72 shipment";
         private const int ExpectedItemsToPackCount = 3;
         private const int ExpectedPackedItemsCount = 4;
         private const string ExpectedCustomerName = "John Doe";
@@ -118,7 +120,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
                 }
             };
 
-            _orderShipment = new OrderShipmentModel {Items = _allOrderItems};
+            _orderShipment = new OrderShipmentModel {Items = _allOrderItems, OrderInfo = {Id = OrderNumber}};
         }
 
         protected override void When()
@@ -127,6 +129,12 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
 
             _itemsToPack = ViewModel.ItemsToPack;
             _packagedItems = ViewModel.PackagedItems;
+        }
+
+        [Then]
+        public void SåSkaTitleVaraKorrekt()
+        {
+            Assert.AreEqual(ExpectedTitle, ViewModel.Title);
         }
 
         [Then]

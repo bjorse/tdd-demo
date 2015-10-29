@@ -6,7 +6,7 @@ namespace TDD.Demo.Domain.Contract
 {
     public interface IOrderService
     {
-        Task<int> SaveOrder(OrderModel order);
+        Task<OrderSavedResult> SaveOrder(OrderModel order);
 
         Task<IEnumerable<OrderModel>> GetAllOrdersAsync();
 

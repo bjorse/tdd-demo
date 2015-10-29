@@ -9,6 +9,8 @@ namespace TDD.Demo.Presentation.Shipments
     {
         void Initialize(CustomerModel customer, OrderShipmentModel orderShipment);
 
+        string Title { get; }
+
         IList<IOrderListItemViewModel> ItemsToPack { get; }
 
         IList<IOrderListItemViewModel> PackagedItems { get; }

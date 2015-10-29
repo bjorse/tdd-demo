@@ -28,6 +28,12 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         }
 
         [Then]
+        public void SåSkaTitleVaraEnTomString()
+        {
+            Assert.AreEqual(string.Empty, ViewModel.Title);
+        }
+
+        [Then]
         public void SåSkaItemsToPackVaraTom()
         {
             Assert.AreEqual(0, ViewModel.ItemsToPack.Count);

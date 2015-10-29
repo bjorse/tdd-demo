@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
+using TDD.Demo.Domain;
 using TDD.Demo.Domain.Customers;
 using TDD.Demo.Domain.Orders;
 using TDD.Demo.Domain.Shipments;

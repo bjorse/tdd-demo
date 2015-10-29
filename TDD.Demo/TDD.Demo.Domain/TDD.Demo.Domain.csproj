@@ -43,7 +43,8 @@
     <Compile Include="EntityBase.cs" />
     <Compile Include="Items\ItemModel.cs" />
     <Compile Include="NotificationObject.cs" />
-    <Compile Include="Orders\OrderInfoModel.cs" />
+    <Compile Include="OrderInfoModel.cs" />
+    <Compile Include="OrderModelBase.cs" />
     <Compile Include="Orders\OrderItemModel.cs" />
     <Compile Include="Orders\OrderModel.cs" />
     <Compile Include="Orders\OrderSavedResult.cs" />
@@ -52,7 +53,9 @@
     <Compile Include="Shipments\OrderShipmentModel.cs" />
     <Compile Include="Shipments\OrderShipmentSavedResult.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Model relations.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
