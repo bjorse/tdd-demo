@@ -65,6 +65,12 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
         }
 
         [Then]
+        public void SåSkaItem1InteVaraIListan()
+        {
+            Assert.IsFalse(_result.Any(x = x.Item.Id == 1));
+        }
+
+        [Then]
         public void SåSkaItem2VaraIListan()
         {
             Assert.IsTrue(_result.Any(x => x.Item.Id == 2 && x.PreviousQuantity != x.CurrentQuantity));
