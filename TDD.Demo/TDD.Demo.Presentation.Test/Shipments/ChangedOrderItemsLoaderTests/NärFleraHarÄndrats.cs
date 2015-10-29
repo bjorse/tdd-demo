@@ -67,7 +67,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
         [Then]
         public void SåSkaItem1InteVaraIListan()
         {
-            Assert.IsFalse(_result.Any(x = x.Item.Id == 1));
+            Assert.IsFalse(_result.Any(x => x.Item.Id == 1));
         }
 
         [Then]
