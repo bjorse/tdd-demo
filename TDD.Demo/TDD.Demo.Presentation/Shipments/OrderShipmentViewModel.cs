@@ -99,7 +99,7 @@ namespace TDD.Demo.Presentation.Shipments
 
         public decimal TotalPrice
         {
-            get { return Model != null ? Model.Items.Select(x => x.OrderItem).Sum(x => x.Quantity*x.Item.Price) : 0m; }
+            get { return Model != null ? Model.Items.Sum(x => x.OrderItem.Quantity*x.OrderItem.Item.Price) : 0m; }
         }
 
         public ICommand MarkItemAsPackedCommand { get; private set; }

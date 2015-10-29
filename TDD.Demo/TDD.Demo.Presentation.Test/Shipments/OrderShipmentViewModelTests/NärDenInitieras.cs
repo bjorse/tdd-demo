@@ -4,8 +4,6 @@ using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 using TDD.Demo.Domain.Customers;
-using TDD.Demo.Domain.Items;
-using TDD.Demo.Domain.Orders;
 using TDD.Demo.Domain.Shipments;
 using TDD.Demo.Presentation.Shipments;
 using TDD.Demo.TestTools;
@@ -52,70 +50,70 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
                 {
                     Id = 1,
                     IsPackaged = false,
-                    OrderItem = new OrderItemModel
+                    OrderItem =
                     {
                         Quantity = 3,
-                        Item = new ItemModel {Price = 18m}
+                        Item = {Price = 18m}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 2,
                     IsPackaged = true,
-                    OrderItem = new OrderItemModel
+                    OrderItem =
                     {
                         Quantity = 1,
-                        Item = new ItemModel {Price = 1.5m}
+                        Item = {Price = 1.5m}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 3,
                     IsPackaged = false,
-                    OrderItem = new OrderItemModel
+                    OrderItem = 
                     {
                         Quantity = 4,
-                        Item = new ItemModel {Price = 100m}
+                        Item = {Price = 100m}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 4,
                     IsPackaged = true,
-                    OrderItem = new OrderItemModel
+                    OrderItem = 
                     {
                         Quantity = 1,
-                        Item = new ItemModel {Price = 10m}
+                        Item = {Price = 10m}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 5,
                     IsPackaged = true,
-                    OrderItem = new OrderItemModel
+                    OrderItem = 
                     {
                         Quantity = 10,
-                        Item = new ItemModel {Price = 10m}
+                        Item = {Price = 10m}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 6,
                     IsPackaged = true,
-                    OrderItem = new OrderItemModel
+                    OrderItem =
                     {
                         Quantity = 3,
-                        Item = new ItemModel {Price = 25}
+                        Item = {Price = 25}
                     }
                 },
                 new OrderItemShipmentModel
                 {
                     Id = 7,
                     IsPackaged = false,
-                    OrderItem = new OrderItemModel
+                    OrderItem =
                     {
                         Quantity = 2,
-                        Item = new ItemModel {Price = 15.5m}
+                        Item = {Price = 15.5m}
                     }
                 }
             };
