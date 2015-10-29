@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B624C63-4A4C-4DBB-810E-ED0812660B44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TDD.Demo.Presentation.Test</RootNamespace>
+    <AssemblyName>TDD.Demo.Presentation.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NSubstitute, Version=1.9.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.9.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shipments\OrderListItemViewModelTests\NärIngenModellÄrSatt.cs" />
+    <Compile Include="Shipments\OrderListItemViewModelTests\NärIsSelectedÄndras.cs" />
+    <Compile Include="Shipments\OrderListItemViewModelTests\NärModellSätts.cs" />
+    <Compile Include="Shipments\OrderListItemViewModelTests\NärSilentDeselectAnropasOchIsSelectedÄrRedanFalse.cs" />
+    <Compile Include="Shipments\OrderListItemViewModelTests\NärSilentDeselectAnropasOchIsSelectedÄrTrue.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\CanShip\NärAllaItemsÄrPaketerade.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\CanShip\NärInteAllaItemsÄrPaketerade.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\GivetEnOrderShipmentViewModel.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\NärMarkItemAsPackedCommandExekveras.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\NärDenInitieras.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\NärDenSkapas.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\NärSaveCommandExekveras.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\NärValtItemÄndrasIItemsToPack.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\ShipOrderCommand\NärAllaItemsÄrPaketerade.cs" />
+    <Compile Include="Shipments\OrderShipmentViewModelTests\ShipOrderCommand\NärInteAllaItemsÄrPaketerade.cs" />
+    <Compile Include="Shipments\ShipmentLoaderTests\GivetEnShipmentLoader.cs" />
+    <Compile Include="Shipments\ShipmentLoaderTests\NärLoadAsyncAnropas.cs" />
+    <Compile Include="Shipments\ShipmentViewModelTests\GivetEnShipmentViewModel.cs" />
+    <Compile Include="Shipments\ShipmentViewModelTests\NärDenInitieras.cs" />
+    <Compile Include="Shipments\ShipmentViewModelTests\NärDenSkapas.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TDD.Demo.Domain.Contract\TDD.Demo.Domain.Contract.csproj">
+      <Project>{714A82C4-5249-45E6-A0D6-9330F9B01266}</Project>
+      <Name>TDD.Demo.Domain.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TDD.Demo.Domain\TDD.Demo.Domain.csproj">
+      <Project>{872EC0C3-17BA-4A77-B37F-E5AB74B8A874}</Project>
+      <Name>TDD.Demo.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TDD.Demo.Presentation\TDD.Demo.Presentation.csproj">
+      <Project>{43EEA7A1-17E9-4E47-B339-ADD3F55F1191}</Project>
+      <Name>TDD.Demo.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TDD.Demo.TestTools\TDD.Demo.TestTools.csproj">
+      <Project>{CE0F1688-5E94-43FC-8ECF-52827AEE2436}</Project>
+      <Name>TDD.Demo.TestTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
