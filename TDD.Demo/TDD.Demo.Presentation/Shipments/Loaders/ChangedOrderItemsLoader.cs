@@ -24,37 +24,37 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
                 return new ChangedOrderItemResult[0];
             }
 
-            var result = new List<ChangedOrderItemResult>();
+            return GetChangedOrderItems(shipmentModel.Items, previousShipment.Items)
+                   .Concat(GetRemovedOrderItems(shipmentModel.Items, previousShipment.Items))
+                   .Where(HasChanged);
+        }
 
-            foreach (var currentOrderItem in shipmentModel.Items)
-            {
-                var previousOrderItem = previousShipment.Items.FirstOrDefault(x => x.OrderItem.Item.Id == currentOrderItem.OrderItem.Item.Id);
+        private static IEnumerable<ChangedOrderItemResult> GetChangedOrderItems(IEnumerable<OrderItemShipmentModel> currentItems, IEnumerable<OrderItemShipmentModel> previousItems)
+        {
+            return from currentOrderItem in currentItems
+                   let previousOrderItem = previousItems.FirstOrDefault(x => x.OrderItem.Item.Id == currentOrderItem.OrderItem.Item.Id)
+                   select new ChangedOrderItemResult
+                   {
+                       Item = currentOrderItem.OrderItem.Item,
+                       PreviousQuantity = previousOrderItem != null ? previousOrderItem.OrderItem.Quantity : (int?) null,
+                       CurrentQuantity = currentOrderItem.OrderItem.Quantity,
+                       New = previousOrderItem == null
+                   };
+        }
 
-                result.Add(new ChangedOrderItemResult
-                {
-                    Item = currentOrderItem.OrderItem.Item,
-                    PreviousQuantity = previousOrderItem != null ? previousOrderItem.OrderItem.Quantity : (int?)null,
-                    CurrentQuantity = currentOrderItem.OrderItem.Quantity,
-                    New = previousOrderItem == null
-                });
-            }
+        private static IEnumerable<ChangedOrderItemResult> GetRemovedOrderItems(IEnumerable<OrderItemShipmentModel> currentItems, IEnumerable<OrderItemShipmentModel> previousItems)
+        {
+            var currentItemIds = currentItems.Select(x => x.OrderItem.Item.Id);
 
-            var currentItemIds = shipmentModel.Items.Select(x => x.OrderItem.Item.Id);
-            var removedOrderItems = previousShipment.Items.Where(x => !currentItemIds.Contains(x.OrderItem.Item.Id));
-
-            foreach (var previousOrderItem in removedOrderItems)
-            {
-                result.Add(new ChangedOrderItemResult
-                {
-                    Item = previousOrderItem.OrderItem.Item,
-                    PreviousQuantity = previousOrderItem.OrderItem.Quantity,
-                    CurrentQuantity = null,
-                    RemovedFromOrder = true,
-                    RemovedFromOrderAndNeedsUnpacking = previousOrderItem.IsPackaged
-                });
-            }
-
-            return result.Where(HasChanged);
+            return previousItems.Where(x => !currentItemIds.Contains(x.OrderItem.Item.Id))
+                                .Select(previousOrderItem => new ChangedOrderItemResult
+                                {
+                                    Item = previousOrderItem.OrderItem.Item,
+                                    PreviousQuantity = previousOrderItem.OrderItem.Quantity,
+                                    CurrentQuantity = null,
+                                    RemovedFromOrder = true,
+                                    RemovedFromOrderAndNeedsUnpacking = previousOrderItem.IsPackaged
+                                });
         }
 
         private static bool HasChanged(ChangedOrderItemResult result)
