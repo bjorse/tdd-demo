@@ -16,6 +16,8 @@ namespace TDD.Demo.Domain.Contract
 
         Task<OrderShipmentModel> GetLatestShipmentByOrderNumberAsync(int orderNumber);
 
+        Task<OrderShipmentModel> GetPreviousShipmentWithAnotherOrderRevisionAsync(int shipmentId);
+
         Task<OrderShipmentModel> GetShipmentByIdAsync(int shipmentId);
     }
 }
