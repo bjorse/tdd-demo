@@ -59,7 +59,7 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
 
         private static bool HasChanged(ChangedOrderItemResult result)
         {
-            return result.HasQuantityChanged() || result.RemovedFromOrder ||
+            return result.PreviousQuantity != result.CurrentQuantity || result.RemovedFromOrder ||
                    result.RemovedFromOrderAndNeedsUnpacking || result.New;
         }
     }

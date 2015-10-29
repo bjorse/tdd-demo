@@ -15,10 +15,5 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
         public bool RemovedFromOrderAndNeedsUnpacking { get; set; }
 
         public bool New { get; set; }
-
-        public bool HasQuantityChanged()
-        {
-            return PreviousQuantity != CurrentQuantity;
-        }
     }
 }

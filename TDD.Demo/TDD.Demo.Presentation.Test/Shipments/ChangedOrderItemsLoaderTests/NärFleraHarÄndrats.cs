@@ -1,0 +1,91 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using NSubstitute;
+using NUnit.Framework;
+using TDD.Demo.Domain.Shipments;
+using TDD.Demo.Presentation.Shipments.Loaders;
+using TDD.Demo.TestTools;
+
+namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
+{
+    public class NärFleraHarÄndrats : GivetEnChangedOrderItemsLoader
+    {
+        private const int ShipmentId = 34;
+
+        private OrderShipmentModel _previousModel;
+        private OrderShipmentModel _currentModel;
+
+        private ChangedOrderItemResult[] _result;
+
+        protected override void Given()
+        {
+            base.Given();
+
+            _previousModel = new OrderShipmentModel
+            {
+                Items = new List<OrderItemShipmentModel>
+                {
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 4, Item = {Id = 1}}},
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 1, Item = {Id = 2}}},
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 1, Item = {Id = 3}}},
+                    new OrderItemShipmentModel {IsPackaged = true, OrderItem = {Quantity = 2, Item = {Id = 4}}},
+                }
+            };
+
+            _currentModel = new OrderShipmentModel()
+            {
+                Id = ShipmentId,
+                Items = new List<OrderItemShipmentModel>
+                {
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 4, Item = {Id = 1}}},
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 3, Item = {Id = 2}}},
+                    new OrderItemShipmentModel {OrderItem = {Quantity = 10, Item = {Id = 5}}}
+                }
+            };
+
+            ShipmentService.GetPreviousShipmentWithAnotherOrderRevisionAsync(Arg.Any<int>()).Returns(Task.FromResult(_previousModel));
+        }
+
+        protected override void When()
+        {
+            _result = Loader.GetChangedOrderItems(_currentModel).GetAwaiter().GetResult().ToArray();
+        }
+
+        [Then]
+        public void SåSkaShipmentServiceBlivitAnropad()
+        {
+            ShipmentService.Received(1).GetPreviousShipmentWithAnotherOrderRevisionAsync(ShipmentId);
+        }
+
+        [Then]
+        public void SåSkaDetVaraKorrektAntalItemsIListan()
+        {
+            Assert.AreEqual(4, _result.Length);
+        }
+
+        [Then]
+        public void SåSkaItem2VaraIListan()
+        {
+            Assert.IsTrue(_result.Any(x => x.Item.Id == 2 && x.PreviousQuantity != x.CurrentQuantity));
+        }
+
+        [Then]
+        public void SåSkaItem3VaraIListan()
+        {
+            Assert.IsTrue(_result.Any(x => x.Item.Id == 3 && x.RemovedFromOrder));
+        }
+
+        [Then]
+        public void SåSkaItem4VaraIListan()
+        {
+            Assert.IsTrue(_result.Any(x => x.Item.Id == 4 && x.RemovedFromOrder && x.RemovedFromOrderAndNeedsUnpacking));
+        }
+
+        [Then]
+        public void SåSkaItem5VaraIListan()
+        {
+            Assert.IsTrue(_result.Any(x => x.Item.Id == 5 && x.New));
+        }
+    }
+}

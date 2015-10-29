@@ -53,6 +53,7 @@
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärEnÄrBorttagen.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärEnÄrBorttagenSomÄrPaketerad.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärEnÄrNy.cs" />
+    <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärFleraHarÄndrats.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärIngenTidigareRevisionFinns.cs" />
     <Compile Include="Shipments\ChangedOrderItemsLoaderTests\NärQuantityHarÄndrats.cs" />
     <Compile Include="Shipments\OrderListItemViewModelTests\NärIngenModellÄrSatt.cs" />
