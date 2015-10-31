@@ -38,7 +38,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
             _orderShipmentViewModel = Substitute.For<IOrderShipmentViewModel>();
 
             ViewModel.PropertyChanged += (sender, args) => _raisedProperties.Add(args.PropertyName);
-            Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.ToList()}));
+            Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.Select(x => new OrderShipmentLoadResult { Model = x }).ToList()}));
             ViewModelFactory.CreateOrderShipmentViewModel().Returns(_orderShipmentViewModel);
         }
 

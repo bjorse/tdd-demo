@@ -59,6 +59,7 @@
     <Compile Include="Shipments\Loaders\ChangedOrderItemsLoader.cs" />
     <Compile Include="Shipments\Loaders\IChangedOrderItemsInformationLoader.cs" />
     <Compile Include="Shipments\Loaders\IChangedOrderItemsLoader.cs" />
+    <Compile Include="Shipments\Loaders\OrderShipmentLoadResult.cs" />
     <Compile Include="Shipments\Loaders\ShipmentLoader.cs" />
     <Compile Include="Shipments\OrderListItemViewModel.cs" />
     <Compile Include="Shipments\OrderShipmentViewModel.cs" />

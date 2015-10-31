@@ -6,7 +6,7 @@ using NSubstitute;
 using NUnit.Framework;
 using TDD.Demo.Domain;
 using TDD.Demo.Domain.Customers;
-using TDD.Demo.Domain.Orders;
+using TDD.Demo.Domain.Items;
 using TDD.Demo.Domain.Shipments;
 using TDD.Demo.Presentation.Shipments.Loaders;
 using TDD.Demo.TestTools;
@@ -15,10 +15,13 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
 {
     public class NärLoadAsyncAnropas : GivetEnShipmentLoader
     {
+        private const string ExpectedChangedOrderItemsInformation = "Några ordrar har ändrats!";
+
         private const int CustomerId = 38;
 
         private CustomerModel _customer;
         private IEnumerable<OrderShipmentModel> _ordersToShip;
+        private IEnumerable<ChangedOrderItemResult> _changedOrderItems; 
 
         private ShipmentLoadResult _result;
 
@@ -34,9 +37,17 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
                 new OrderShipmentModel {Id = 2, OrderInfo = orderInfo},
                 new OrderShipmentModel {Id = 3, OrderInfo = orderInfo}
             };
+            _changedOrderItems = new[]
+            {
+                new ChangedOrderItemResult {Item = new ItemModel {Id = 1}},
+                new ChangedOrderItemResult {Item = new ItemModel {Id = 2}},
+                new ChangedOrderItemResult {Item = new ItemModel {Id = 3}}
+            };
 
             CustomerService.GetCustomerById(Arg.Any<int>()).Returns(Task.FromResult(_customer));
             ShipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
+            ChangedOrderItemsLoader.GetChangedOrderItems(Arg.Any<OrderShipmentModel>()).Returns(_changedOrderItems);
+            ChangedOrderItemsInformationLoader.GetChangedOrderItemInformation(Arg.Any<IEnumerable<ChangedOrderItemResult>>()).Returns(ExpectedChangedOrderItemsInformation);
         }
 
         protected override void When()
@@ -57,6 +68,21 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         }
 
         [Then]
+        public void SåSkaChangedOrderItemsLoaderBlivitAnropadFörAllaModeller()
+        {
+            foreach (var model in _ordersToShip)
+            {
+                ChangedOrderItemsLoader.Received(1).GetChangedOrderItems(model);
+            }
+        }
+
+        [Then]
+        public void SåSkaChangedOrderItemsInformationLoaderBlivitAnropadFörAllaModeller()
+        {
+            ChangedOrderItemsInformationLoader.Received(3).GetChangedOrderItemInformation(Arg.Any<ChangedOrderItemResult[]>());
+        }
+
+        [Then]
         public void SåSkaDetVaraKorrektCustomerIResultatet()
         {
             Assert.AreEqual(_customer, _result.Customer);
@@ -71,13 +97,25 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         [Then]
         public void SåSkaOrdersToShipVaraObservableCollection()
         {
-            Assert.IsTrue(_result.OrdersToShip.GetType() == typeof(ObservableCollection<OrderShipmentModel>));
+            Assert.IsTrue(_result.OrdersToShip.GetType() == typeof(ObservableCollection<OrderShipmentLoadResult>));
         }
 
         [Then]
         public void SåSkaDetVaraKorrektElementIOrdersToShipIResultatet()
         {
-            Assert.IsTrue(_ordersToShip.All(x => _result.OrdersToShip.Contains(x)));
+            Assert.IsTrue(_ordersToShip.All(x => _result.OrdersToShip.Select(y => y.Model).Contains(x)));
+        }
+
+        [Then]
+        public void SåSkaDetVaraKorrektChangedOrderItemsIResultatet()
+        {
+            Assert.IsTrue(_result.OrdersToShip.All(x => _changedOrderItems.SequenceEqual(x.ChangedOrderItems)));
+        }
+
+        [Then]
+        public void SåSkaDetVaraKorrektChangedOrderItemsInformationIResultatet()
+        {
+            Assert.IsTrue(_result.OrdersToShip.All(x => x.ChangedOrderInformation == ExpectedChangedOrderItemsInformation));
         }
     }
 }
