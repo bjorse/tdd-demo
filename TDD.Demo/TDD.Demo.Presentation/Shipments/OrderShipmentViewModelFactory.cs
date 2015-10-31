@@ -1,6 +1,4 @@
-﻿using TDD.Demo.Domain.Customers;
-using TDD.Demo.Domain.Shipments;
-using TDD.Demo.Presentation.Shipments.Savers;
+﻿using TDD.Demo.Presentation.Shipments.Savers;
 
 namespace TDD.Demo.Presentation.Shipments
 {
@@ -15,12 +13,9 @@ namespace TDD.Demo.Presentation.Shipments
             _saver = saver;
         }
 
-        public IOrderShipmentViewModel CreateOrderShipmentViewModel(CustomerModel customer, OrderShipmentModel model)
+        public IOrderShipmentViewModel CreateOrderShipmentViewModel()
         {
-            var viewModel = new OrderShipmentViewModel(_orderListItemViewModelFactory, _saver);
-            viewModel.Initialize(customer, model);
-
-            return viewModel;
+            return new OrderShipmentViewModel(_orderListItemViewModelFactory, _saver);
         }
     }
 }

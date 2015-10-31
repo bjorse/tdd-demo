@@ -20,6 +20,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
  
         private CustomerModel _customer;
         private IEnumerable<OrderShipmentModel> _models;
+        private IOrderShipmentViewModel _orderShipmentViewModel;
 
         protected override void Given()
         {
@@ -34,9 +35,11 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
                 new OrderShipmentModel {Id = 4},
                 new OrderShipmentModel {Id = 5}
             };
+            _orderShipmentViewModel = Substitute.For<IOrderShipmentViewModel>();
 
             ViewModel.PropertyChanged += (sender, args) => _raisedProperties.Add(args.PropertyName);
             Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.ToList()}));
+            ViewModelFactory.CreateOrderShipmentViewModel().Returns(_orderShipmentViewModel);
         }
 
         protected override void When()
@@ -53,7 +56,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
         [Then]
         public void SåHarViewModelFactoryBlivitAnropadKorrektAntalGånger()
         {
-            ViewModelFactory.Received(5).CreateOrderShipmentViewModel(Arg.Any<CustomerModel>(), Arg.Any<OrderShipmentModel>());
+            ViewModelFactory.Received(5).CreateOrderShipmentViewModel();
         }
 
         [Then]
@@ -61,7 +64,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
         {
             foreach (var model in _models)
             {
-                ViewModelFactory.Received(1).CreateOrderShipmentViewModel(_customer, model);
+                _orderShipmentViewModel.Received(1).Initialize(_customer, model);
             }
         }
 

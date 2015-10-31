@@ -6,7 +6,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-TDD-presentation.key
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
