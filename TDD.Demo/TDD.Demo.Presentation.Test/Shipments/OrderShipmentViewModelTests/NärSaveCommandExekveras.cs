@@ -16,7 +16,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
 
             _model = new OrderShipmentModel();
 
-            ViewModel.Initialize(new CustomerModel(), _model);
+            ViewModel.Initialize(new CustomerModel(), _model, string.Empty);
         }
 
         protected override void When()

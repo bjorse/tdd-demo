@@ -23,7 +23,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
 
             _model = new OrderItemShipmentModel {IsPackaged = false};
 
-            ViewModel.Initialize(new CustomerModel(), new OrderShipmentModel {Items = {_model, new OrderItemShipmentModel {IsPackaged = false}}});
+            ViewModel.Initialize(new CustomerModel(), new OrderShipmentModel {Items = {_model, new OrderItemShipmentModel {IsPackaged = false}}}, string.Empty);
             ViewModel.PropertyChanged += (sender, args) => _raisedProperties.Add(args.PropertyName);
 
             _itemInList = ViewModel.ItemsToPack.First();

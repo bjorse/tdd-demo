@@ -19,6 +19,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         private const string ExpectedCustomerName = "John Doe";
         private const string ExpectedDeliveryAddress = "Delivery street 15, 12345, Delivery town";
         private const decimal ExpectedTotalPrice = 671.5m;
+        private const string ExpectedWarningMessage = "Detta är information om att ordern har ändrats";
 
         private readonly IList<string> _raisedProperties = new List<string>();
 
@@ -123,7 +124,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
 
         protected override void When()
         {
-            ViewModel.Initialize(_customer, _orderShipment);
+            ViewModel.Initialize(_customer, _orderShipment, ExpectedWarningMessage);
 
             _itemsToPack = ViewModel.ItemsToPack;
             _packagedItems = ViewModel.PackagedItems;
@@ -205,9 +206,15 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         }
 
         [Then]
+        public void SåSkaWarningMessageVaraKorrekt()
+        {
+            Assert.AreEqual(ExpectedWarningMessage, ViewModel.WarningMessage);
+        }
+
+        [Then]
         public void SåSkaKorrektAntalPropertiesHaRaisats()
         {
-            Assert.AreEqual(6, _raisedProperties.Count);
+            Assert.AreEqual(7, _raisedProperties.Count);
         }
 
         [Then]
@@ -244,6 +251,12 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         public void SåSkaPropertynTotalPriceRaisats()
         {
             Assert.IsTrue(_raisedProperties.Contains("TotalPrice"));
+        }
+
+        [Then]
+        public void SåSkaPropertynWarningMessageRaisats()
+        {
+            Assert.IsTrue(_raisedProperties.Contains("WarningMessage"));
         }
     }
 }

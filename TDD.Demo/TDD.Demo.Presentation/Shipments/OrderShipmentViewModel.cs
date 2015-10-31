@@ -27,10 +27,11 @@ namespace TDD.Demo.Presentation.Shipments
             ShipOrderCommand = new DelegateCommand(ShipOrderAction, () => CanShip);
         }
 
-        public void Initialize(CustomerModel customer, OrderShipmentModel orderShipment)
+        public void Initialize(CustomerModel customer, OrderShipmentModel orderShipment, string changedOrderInformation)
         {
             _customer = customer;
             Model = orderShipment;
+            WarningMessage = changedOrderInformation;
 
             ResetItemLists();
             RaisePropertyChanged(() => CustomerName);

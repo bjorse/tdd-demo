@@ -48,7 +48,7 @@ namespace TDD.Demo.Presentation.Shipments
         private IOrderShipmentViewModel CreateOrderShipmentViewModel(CustomerModel customer, OrderShipmentLoadResult orderShipment)
         {
             var viewModel = _viewModelFactory.CreateOrderShipmentViewModel();
-            viewModel.Initialize(customer, orderShipment.Model);
+            viewModel.Initialize(customer, orderShipment.Model, orderShipment.ChangedOrderInformation);
 
             return viewModel;
         }

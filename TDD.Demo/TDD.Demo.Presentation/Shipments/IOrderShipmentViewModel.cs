@@ -7,7 +7,7 @@ namespace TDD.Demo.Presentation.Shipments
 {
     public interface IOrderShipmentViewModel : IViewModel<OrderShipmentModel>
     {
-        void Initialize(CustomerModel customer, OrderShipmentModel orderShipment);
+        void Initialize(CustomerModel customer, OrderShipmentModel orderShipment, string changedOrderInformation);
 
         string Title { get; }
 

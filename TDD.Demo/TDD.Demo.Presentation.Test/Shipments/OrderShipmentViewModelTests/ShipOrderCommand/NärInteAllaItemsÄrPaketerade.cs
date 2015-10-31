@@ -30,7 +30,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests.ShipO
                 }
             };
 
-            ViewModel.Initialize(customer, orderShipment);
+            ViewModel.Initialize(customer, orderShipment, string.Empty);
         }
 
         protected override void When()

@@ -29,7 +29,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
                 }
             };
 
-            ViewModel.Initialize(new CustomerModel(), orderShipment);
+            ViewModel.Initialize(new CustomerModel(), orderShipment, string.Empty);
 
             _item = ViewModel.ItemsToPack.First();
             _item.IsSelected.Returns(true);

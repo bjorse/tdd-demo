@@ -34,7 +34,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests.CanSh
                 }
             };
 
-            ViewModel.Initialize(customer, orderShipment);
+            ViewModel.Initialize(customer, orderShipment, string.Empty);
         }
 
         protected override void When()

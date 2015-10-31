@@ -15,6 +15,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
     public class NärDenInitieras : GivetEnShipmentViewModel
     {
         private const int CustomerId = 18;
+        private const string ExpectedChangedOrderInformationFormat = "ChangedOrder_{0}";
 
         private readonly IList<string> _raisedProperties = new List<string>();
  
@@ -38,7 +39,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
             _orderShipmentViewModel = Substitute.For<IOrderShipmentViewModel>();
 
             ViewModel.PropertyChanged += (sender, args) => _raisedProperties.Add(args.PropertyName);
-            Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.Select(x => new OrderShipmentLoadResult { Model = x }).ToList()}));
+            Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.Select(x => new OrderShipmentLoadResult { Model = x, ChangedOrderInformation = string.Format(ExpectedChangedOrderInformationFormat, x.Id)}).ToList()}));
             ViewModelFactory.CreateOrderShipmentViewModel().Returns(_orderShipmentViewModel);
         }
 
@@ -64,7 +65,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
         {
             foreach (var model in _models)
             {
-                _orderShipmentViewModel.Received(1).Initialize(_customer, model);
+                _orderShipmentViewModel.Received(1).Initialize(_customer, model, string.Format(ExpectedChangedOrderInformationFormat, model.Id));
             }
         }
 
