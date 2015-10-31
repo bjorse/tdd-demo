@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using TDD.Demo.Domain;
+using TDD.Demo.Domain.Customers;
+using TDD.Demo.Domain.Shipments;
 using TDD.Demo.Presentation.Shipments.Loaders;
 
 namespace TDD.Demo.Presentation.Shipments
@@ -21,7 +23,7 @@ namespace TDD.Demo.Presentation.Shipments
         public async Task InitializeAsync(int customerId)
         {
             var loadResult = await _loader.LoadAsync(customerId);
-            var viewModels = loadResult.OrdersToShip.Select(x => _viewModelFactory.CreateOrderShipmentViewModel(loadResult.Customer, x));
+            var viewModels = loadResult.OrdersToShip.Select(x => CreateOrderShipmentViewModel(loadResult.Customer, x));
 
             OrderShipments = new ObservableCollection<IOrderShipmentViewModel>(viewModels);
         }
@@ -41,6 +43,14 @@ namespace TDD.Demo.Presentation.Shipments
                 _orderShipments = value;
                 RaisePropertyChanged();
             }
+        }
+
+        private IOrderShipmentViewModel CreateOrderShipmentViewModel(CustomerModel customer, OrderShipmentModel model)
+        {
+            var viewModel = _viewModelFactory.CreateOrderShipmentViewModel();
+            viewModel.Initialize(customer, model);
+
+            return viewModel;
         }
     }
 }
