@@ -35,7 +35,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
                 new OrderShipmentModel {Id = 3, OrderInfo = orderInfo}
             };
 
-            CustomerService.GetCustomerById(Arg.Any<int>()).Returns(Task.FromResult(_customer));
+            CustomerService.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
             ShipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
         }
 
@@ -47,7 +47,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         [Then]
         public void SåSkaCustomerServiceBlivitAnropadKorrekt()
         {
-            CustomerService.Received(1).GetCustomerById(CustomerId);
+            CustomerService.Received(1).GetCustomerByIdAsync(CustomerId);
         }
 
         [Then]
