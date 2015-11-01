@@ -17,7 +17,7 @@ namespace TDD.Demo.Application.Orders
             _saver = saver;
         }
 
-        public async Task<OrderSavedResult> SaveOrder(OrderModel order)
+        public async Task<OrderSavedResult> SaveOrderAsync(OrderModel order)
         {
             return _saver.SaveOrder(order);
         }
