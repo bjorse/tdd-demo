@@ -18,7 +18,7 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
 
         public async Task<ShipmentLoadResult> LoadAsync(int customerId)
         {
-            var customer = await _customerService.GetCustomerById(customerId);
+            var customer = await _customerService.GetCustomerByIdAsync(customerId);
             var shipmentOrders = await _shipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(customerId);
 
             return new ShipmentLoadResult
