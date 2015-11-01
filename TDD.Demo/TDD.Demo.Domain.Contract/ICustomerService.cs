@@ -5,6 +5,6 @@ namespace TDD.Demo.Domain.Contract
 {
     public interface ICustomerService
     {
-        Task<CustomerModel> GetCustomerById(int customerId);
+        Task<CustomerModel> GetCustomerByIdAsync(int customerId);
     }
 }
