@@ -166,7 +166,7 @@ namespace TDD.Demo.Presentation.Shipments
         private IList<IOrderListItemViewModel> CreateListItems(Func<IEnumerable<OrderItemShipmentModel>, IEnumerable<OrderItemShipmentModel>> query)
         {
             return Model != null
-                ? new ObservableCollection<IOrderListItemViewModel>(query(Model.Items).Select(x => _orderListItemViewModelFactory.CreateOrderListItem(x)))
+                ? new ObservableCollection<IOrderListItemViewModel>(query(Model.Items).Select(_orderListItemViewModelFactory.CreateOrderListItem))
                 : new ObservableCollection<IOrderListItemViewModel>();
         }
     }
