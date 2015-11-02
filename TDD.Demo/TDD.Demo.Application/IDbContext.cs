@@ -1,7 +1,6 @@
 ﻿using System;
 using TDD.Demo.Domain;
 using TDD.Demo.Domain.Items;
-using TDD.Demo.Domain.Orders;
 using TDD.Demo.Domain.Shipments;
 
 namespace TDD.Demo.Application
