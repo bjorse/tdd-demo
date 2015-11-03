@@ -17,6 +17,16 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="TDD.Demo.Presentation.Shipments.Loaders.ChangedOrderItemResult">
+    <Position X="6.75" Y="4.25" Width="3" />
+    <Members>
+      <Method Name="ChangedOrderItemResult" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAAQAAACAAAAAAAAAEAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Shipments\Loaders\ChangedOrderItemResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="TDD.Demo.Domain.Contract.IShipmentService">
     <Position X="6.75" Y="2.75" Width="3.5" />
     <Members>
