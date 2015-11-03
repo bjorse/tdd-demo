@@ -39,7 +39,7 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
 
         private async Task<OrderShipmentLoadResult> GetShipmentLoadResult(OrderShipmentModel model)
         {
-            var changedOrderItems = (await _changedOrderItemsLoader.GetChangedOrderItems(model)).ToArray();
+            var changedOrderItems = (await _changedOrderItemsLoader.GetChangedOrderItemsAsync(model)).ToArray();
             var changedOrderItemsInformation = _changedOrderItemsInformationLoader.GetChangedOrderItemInformation(changedOrderItems);
 
             return new OrderShipmentLoadResult
