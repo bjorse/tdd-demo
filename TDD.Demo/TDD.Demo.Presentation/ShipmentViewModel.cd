@@ -4,6 +4,8 @@
     <Position X="3.25" Y="3.25" Width="2.75" />
     <Members>
       <Field Name="_orderShipments" Hidden="true" />
+      <Method Name="CreateOrderShipmentViewModel" Hidden="true" />
+      <Method Name="ShipmentViewModel" Hidden="true" />
     </Members>
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAECAAA=</HashCode>
@@ -16,7 +18,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="TDD.Demo.Presentation.Shipments.OrderShipmentViewModel">
-    <Position X="3.25" Y="6" Width="2.75" />
+    <Position X="3.25" Y="5.75" Width="2.75" />
     <Members>
       <Field Name="_customer" Hidden="true" />
       <Field Name="_itemsToPack" Hidden="true" />
@@ -64,7 +66,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="TDD.Demo.Presentation.Shipments.Savers.IShipmentSaver">
-    <Position X="7.75" Y="6" Width="2" />
+    <Position X="7.75" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shipments\Savers\IShipmentSaver.cs</FileName>
@@ -79,6 +81,18 @@
   </Interface>
   <Interface Name="TDD.Demo.Presentation.Shipments.IOrderShipmentViewModel">
     <Position X="0.5" Y="5.75" Width="2.5" />
+    <Members>
+      <Property Name="CanShip" Hidden="true" />
+      <Property Name="CustomerName" Hidden="true" />
+      <Property Name="DeliveryAddress" Hidden="true" />
+      <Property Name="ItemsToPack" Hidden="true" />
+      <Property Name="MarkItemAsPackedCommand" Hidden="true" />
+      <Property Name="PackagedItems" Hidden="true" />
+      <Property Name="SaveCommand" Hidden="true" />
+      <Property Name="ShipOrderCommand" Hidden="true" />
+      <Property Name="Title" Hidden="true" />
+      <Property Name="TotalPrice" Hidden="true" />
+    </Members>
     <Compartments>
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>

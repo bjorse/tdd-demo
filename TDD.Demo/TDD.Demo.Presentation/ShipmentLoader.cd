@@ -18,6 +18,20 @@
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="TDD.Demo.Presentation.Shipments.Loaders.ShipmentLoadResult">
+    <Position X="4" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Loaders\ShipmentLoadResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TDD.Demo.Presentation.Shipments.Loaders.OrderShipmentLoadResult">
+    <Position X="6.25" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAAAAAEA=</HashCode>
+      <FileName>Shipments\Loaders\OrderShipmentLoadResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="TDD.Demo.Presentation.Shipments.Loaders.IChangedOrderItemsInformationLoader">
     <Position X="9.25" Y="2.25" Width="3" />
     <TypeIdentifier>
