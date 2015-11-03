@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TDD.Demo.Presentation.Shipments.Loaders.ChangedOrderItemsLoader">
+    <Position X="2" Y="2.75" Width="3.25" />
+    <Members>
+      <Method Name="ChangedOrderItemsLoader" Hidden="true" />
+      <Method Name="GetRemovedOrderItems" Hidden="true" />
+      <Method Name="HasChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAIIAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Loaders\ChangedOrderItemsLoader.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_shipmentService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TDD.Demo.Domain.Contract.IShipmentService">
+    <Position X="6.75" Y="2.75" Width="3.5" />
+    <Members>
+      <Method Name="GetAllNotShippedShipmentsByCustomerIdAsync" Hidden="true" />
+      <Method Name="GetAllShipmentsAsync" Hidden="true" />
+      <Method Name="GetAllShipmentsByCustomerIdAsync" Hidden="true" />
+      <Method Name="GetLatestShipmentByOrderNumberAsync" Hidden="true" />
+      <Method Name="GetShipmentByIdAsync" Hidden="true" />
+      <Method Name="SaveOrderShipmentAsync" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

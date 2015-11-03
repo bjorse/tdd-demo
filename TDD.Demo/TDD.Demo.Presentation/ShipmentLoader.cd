@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TDD.Demo.Presentation.Shipments.Loaders.ShipmentLoader">
+    <Position X="4" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAgAAAABAAAAAQAAAAIAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Loaders\ShipmentLoader.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_changedOrderItemsInformationLoader" />
+      <Field Name="_changedOrderItemsLoader" />
+      <Field Name="_customerService" />
+      <Field Name="_shipmentService" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TDD.Demo.Presentation.Shipments.Loaders.IChangedOrderItemsInformationLoader">
+    <Position X="9.25" Y="2.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Loaders\IChangedOrderItemsInformationLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TDD.Demo.Presentation.Shipments.Loaders.IChangedOrderItemsLoader">
+    <Position X="9.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Loaders\IChangedOrderItemsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TDD.Demo.Domain.Contract.ICustomerService">
+    <Position X="9.25" Y="6" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="TDD.Demo.Domain.Contract.IShipmentService">
+    <Position X="9.25" Y="4.75" Width="3" />
+    <Members>
+      <Method Name="GetAllShipmentsAsync" Hidden="true" />
+      <Method Name="GetAllShipmentsByCustomerIdAsync" Hidden="true" />
+      <Method Name="GetLatestShipmentByOrderNumberAsync" Hidden="true" />
+      <Method Name="GetPreviousShipmentWithAnotherOrderRevisionAsync" Hidden="true" />
+      <Method Name="GetShipmentByIdAsync" Hidden="true" />
+      <Method Name="SaveOrderShipmentAsync" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
