@@ -46,7 +46,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
 
             CustomerService.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
             ShipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
-            ChangedOrderItemsLoader.GetChangedOrderItems(Arg.Any<OrderShipmentModel>()).Returns(_changedOrderItems);
+            ChangedOrderItemsLoader.GetChangedOrderItemsAsync(Arg.Any<OrderShipmentModel>()).Returns(_changedOrderItems);
             ChangedOrderItemsInformationLoader.GetChangedOrderItemInformation(Arg.Any<IEnumerable<ChangedOrderItemResult>>()).Returns(ExpectedChangedOrderItemsInformation);
         }
 
@@ -72,7 +72,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         {
             foreach (var model in _ordersToShip)
             {
-                ChangedOrderItemsLoader.Received(1).GetChangedOrderItems(model);
+                ChangedOrderItemsLoader.Received(1).GetChangedOrderItemsAsync(model);
             }
         }
 
