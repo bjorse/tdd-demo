@@ -4,11 +4,12 @@
     <Position X="2" Y="2.75" Width="3.25" />
     <Members>
       <Method Name="ChangedOrderItemsLoader" Hidden="true" />
+      <Method Name="GetChangedOrderItems" Hidden="true" />
       <Method Name="GetRemovedOrderItems" Hidden="true" />
       <Method Name="HasChanged" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAIIAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAJIAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shipments\Loaders\ChangedOrderItemsLoader.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

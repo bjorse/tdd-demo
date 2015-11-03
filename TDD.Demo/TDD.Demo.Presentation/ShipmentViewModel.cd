@@ -10,8 +10,42 @@
       <FileName>Shipments\ShipmentViewModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_loader" />
       <Field Name="_viewModelFactory" />
+      <Field Name="_loader" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TDD.Demo.Presentation.Shipments.OrderShipmentViewModel">
+    <Position X="3.25" Y="6" Width="2.75" />
+    <Members>
+      <Field Name="_customer" Hidden="true" />
+      <Field Name="_itemsToPack" Hidden="true" />
+      <Field Name="_orderListItemViewModelFactory" Hidden="true" />
+      <Field Name="_packagedItems" Hidden="true" />
+      <Property Name="CanShip" Hidden="true" />
+      <Method Name="CreateListItems" Hidden="true" />
+      <Property Name="CustomerName" Hidden="true" />
+      <Property Name="DeliveryAddress" Hidden="true" />
+      <Property Name="ItemsToPack" Hidden="true" />
+      <Method Name="MarkItemAsPackedAction" Hidden="true" />
+      <Property Name="MarkItemAsPackedCommand" Hidden="true" />
+      <Method Name="OnItemsToPackSelectionChanged" Hidden="true" />
+      <Method Name="OrderShipmentViewModel" Hidden="true" />
+      <Property Name="PackagedItems" Hidden="true" />
+      <Method Name="ResetItemLists" Hidden="true" />
+      <Method Name="SaveAction" Hidden="true" />
+      <Property Name="SaveCommand" Hidden="true" />
+      <Method Name="ShipOrderAction" Hidden="true" />
+      <Property Name="ShipOrderCommand" Hidden="true" />
+      <Property Name="Title" Hidden="true" />
+      <Property Name="TotalPrice" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAgBgAAAAAwACcAAACQgCAAAQACAQCCAAQAgAAAEAAA=</HashCode>
+      <FileName>Shipments\OrderShipmentViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_saver" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -27,6 +61,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shipments\IOrderShipmentViewModelFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TDD.Demo.Presentation.Shipments.Savers.IShipmentSaver">
+    <Position X="7.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\Savers\IShipmentSaver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TDD.Demo.Presentation.IViewModel&lt;TModel&gt;">
+    <Position X="0.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>IViewModel.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

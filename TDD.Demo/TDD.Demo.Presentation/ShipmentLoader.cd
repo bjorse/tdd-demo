@@ -2,15 +2,19 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TDD.Demo.Presentation.Shipments.Loaders.ShipmentLoader">
     <Position X="4" Y="3.5" Width="3" />
+    <Members>
+      <Method Name="GetShipmentLoadResult" Hidden="true" />
+      <Method Name="ShipmentLoader" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AIAAAAAgAAAABAAAAAQAAAAIAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Shipments\Loaders\ShipmentLoader.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_changedOrderItemsInformationLoader" />
-      <Field Name="_changedOrderItemsLoader" />
       <Field Name="_customerService" />
       <Field Name="_shipmentService" />
+      <Field Name="_changedOrderItemsLoader" />
+      <Field Name="_changedOrderItemsInformationLoader" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
@@ -24,7 +28,7 @@
   <Interface Name="TDD.Demo.Presentation.Shipments.Loaders.IChangedOrderItemsLoader">
     <Position X="9.25" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shipments\Loaders\IChangedOrderItemsLoader.cs</FileName>
     </TypeIdentifier>
   </Interface>
