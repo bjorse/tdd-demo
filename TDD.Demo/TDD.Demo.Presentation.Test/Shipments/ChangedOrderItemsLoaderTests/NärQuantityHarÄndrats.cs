@@ -44,7 +44,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
 
         protected override void When()
         {
-            _result = Loader.GetChangedOrderItems(_currentModel).GetAwaiter().GetResult().ToArray();
+            _result = Loader.GetChangedOrderItemsAsync(_currentModel).GetAwaiter().GetResult().ToArray();
         }
 
         [Then]

@@ -15,7 +15,7 @@ namespace TDD.Demo.Presentation.Shipments.Loaders
             _shipmentService = shipmentService;
         }
 
-        public async Task<IEnumerable<ChangedOrderItemResult>> GetChangedOrderItems(OrderShipmentModel shipmentModel)
+        public async Task<IEnumerable<ChangedOrderItemResult>> GetChangedOrderItemsAsync(OrderShipmentModel shipmentModel)
         {
             var previousShipment = await _shipmentService.GetPreviousShipmentWithAnotherOrderRevisionAsync(shipmentModel.Id);
 
