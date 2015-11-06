@@ -7,18 +7,18 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
 {
     public abstract class GivetEnShipmentLoader : SpecificationBase
     {
-        protected ICustomerService CustomerService { get; private set; }
+        protected ICustomerService CustomerServiceMock { get; private set; }
 
-        protected IShipmentService ShipmentService { get; private set; }
+        protected IShipmentService ShipmentServiceMock { get; private set; }
 
         protected ShipmentLoader Loader { get; private set; }
 
         protected override void Given()
         {
-            CustomerService = Substitute.For<ICustomerService>();
-            ShipmentService = Substitute.For<IShipmentService>();
+            CustomerServiceMock = Substitute.For<ICustomerService>();
+            ShipmentServiceMock = Substitute.For<IShipmentService>();
 
-            Loader = new ShipmentLoader(CustomerService, ShipmentService);
+            Loader = new ShipmentLoader(CustomerServiceMock, ShipmentServiceMock);
         }
     }
 }

@@ -7,20 +7,20 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
 {
     public abstract class GivetEnShipmentViewModel : SpecificationBase
     {
-        protected IOrderShipmentViewModelFactory ViewModelFactory { get; private set; }
+        protected IOrderShipmentViewModelFactory ViewModelFactoryMock { get; private set; }
 
-        protected IShipmentLoader Loader { get; private set; }
+        protected IShipmentLoader LoaderMock { get; private set; }
 
         protected ShipmentViewModel ViewModel { get; private set; }
 
         protected override void Given()
         {
-            ViewModelFactory = Substitute.For<IOrderShipmentViewModelFactory>();
-            Loader = Substitute.For<IShipmentLoader>();
+            ViewModelFactoryMock = Substitute.For<IOrderShipmentViewModelFactory>();
+            LoaderMock = Substitute.For<IShipmentLoader>();
 
-            ViewModelFactory.CreateOrderShipmentViewModel().Returns(Substitute.For<IOrderShipmentViewModel>());
+            ViewModelFactoryMock.CreateOrderShipmentViewModel().Returns(Substitute.For<IOrderShipmentViewModel>());
 
-            ViewModel = new ShipmentViewModel(ViewModelFactory, Loader);
+            ViewModel = new ShipmentViewModel(ViewModelFactoryMock, LoaderMock);
         }
     }
 }
