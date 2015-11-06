@@ -138,7 +138,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         [Then]
         public void SåSkaOrderListItemViewModelFactoryBlivitAnropadKorrektAntalGånger()
         {
-            OrderListItemViewModelFactory.Received(7).CreateOrderListItem(Arg.Any<OrderItemShipmentModel>());
+            OrderListItemViewModelFactoryMock.Received(7).CreateOrderListItem(Arg.Any<OrderItemShipmentModel>());
         }
 
         [Then]
@@ -146,7 +146,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         {
             foreach (var orderItem in _allOrderItems)
             {
-                OrderListItemViewModelFactory.Received(1).CreateOrderListItem(orderItem);
+                OrderListItemViewModelFactoryMock.Received(1).CreateOrderListItem(orderItem);
             }
         }
 
