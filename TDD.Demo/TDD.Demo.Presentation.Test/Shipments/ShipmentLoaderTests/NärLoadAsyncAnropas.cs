@@ -6,7 +6,6 @@ using NSubstitute;
 using NUnit.Framework;
 using TDD.Demo.Domain;
 using TDD.Demo.Domain.Customers;
-using TDD.Demo.Domain.Orders;
 using TDD.Demo.Domain.Shipments;
 using TDD.Demo.Presentation.Shipments.Loaders;
 using TDD.Demo.TestTools;
@@ -35,8 +34,8 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
                 new OrderShipmentModel {Id = 3, OrderInfo = orderInfo}
             };
 
-            CustomerService.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
-            ShipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
+            CustomerServiceMock.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
+            ShipmentServiceMock.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
         }
 
         protected override void When()
@@ -47,13 +46,13 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         [Then]
         public void SåSkaCustomerServiceBlivitAnropadKorrekt()
         {
-            CustomerService.Received(1).GetCustomerByIdAsync(CustomerId);
+            CustomerServiceMock.Received(1).GetCustomerByIdAsync(CustomerId);
         }
 
         [Then]
         public void SåSkaShipmentServiceBlivitAnropadKorrekt()
         {
-            ShipmentService.Received(1).GetAllNotShippedShipmentsByCustomerIdAsync(CustomerId);
+            ShipmentServiceMock.Received(1).GetAllNotShippedShipmentsByCustomerIdAsync(CustomerId);
         }
 
         [Then]
