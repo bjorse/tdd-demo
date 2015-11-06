@@ -66,7 +66,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests.ShipO
         [Then]
         public void SåSkaShipmentSaverBlivitAnropadKorrekt()
         {
-            Saver.Received(1).SaveOrderShipmentAsync(_model);
+            SaverMock.Received(1).SaveOrderShipmentAsync(_model);
         }
     }
 }
