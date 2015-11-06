@@ -100,5 +100,15 @@
         [Then]
         public void SÂSkaAllaRaderVaraKorrektOchIR‰ttOrdning()
         {
-            Assert.IsTrue(_expectedResult.SequenceEqual(_result));
+            if (_expectedResult.SequenceEqual(_result))
+            {
+                return;
+            }
+
+            var errorMessage = string.Join(Environment.NewLine, new[] {"Expected result:"}
+                                     .Concat(_expectedResult)
+                                     .Concat(new[] {string.Empty, "But was:"})
+                                     .Concat(_result));
+
+            throw new AssertionException(errorMessage);
         }
