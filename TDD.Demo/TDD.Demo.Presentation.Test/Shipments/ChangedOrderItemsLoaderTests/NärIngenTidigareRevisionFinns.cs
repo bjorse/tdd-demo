@@ -22,7 +22,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
 
             _model = new OrderShipmentModel {Id = ShipmentId};
 
-            ShipmentService.GetPreviousShipmentWithAnotherOrderRevisionAsync(Arg.Any<int>()).Returns(Task.FromResult((OrderShipmentModel) null));
+            ShipmentServiceMock.GetPreviousShipmentWithAnotherOrderRevisionAsync(Arg.Any<int>()).Returns(Task.FromResult((OrderShipmentModel) null));
         }
 
         protected override void When()
@@ -33,7 +33,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsLoaderTests
         [Then]
         public void SåSkaShipmentServiceBlivitAnropadKorrekt()
         {
-            ShipmentService.Received(1).GetPreviousShipmentWithAnotherOrderRevisionAsync(ShipmentId);
+            ShipmentServiceMock.Received(1).GetPreviousShipmentWithAnotherOrderRevisionAsync(ShipmentId);
         }
 
         [Then]

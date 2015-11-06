@@ -44,10 +44,10 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
                 new ChangedOrderItemResult {Item = new ItemModel {Id = 3}}
             };
 
-            CustomerService.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
-            ShipmentService.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
-            ChangedOrderItemsLoader.GetChangedOrderItemsAsync(Arg.Any<OrderShipmentModel>()).Returns(_changedOrderItems);
-            ChangedOrderItemsInformationLoader.GetChangedOrderItemInformation(Arg.Any<IEnumerable<ChangedOrderItemResult>>()).Returns(ExpectedChangedOrderItemsInformation);
+            CustomerServiceMock.GetCustomerByIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_customer));
+            ShipmentServiceMock.GetAllNotShippedShipmentsByCustomerIdAsync(Arg.Any<int>()).Returns(Task.FromResult(_ordersToShip));
+            ChangedOrderItemsLoaderMock.GetChangedOrderItemsAsync(Arg.Any<OrderShipmentModel>()).Returns(_changedOrderItems);
+            ChangedOrderItemsInformationLoaderMock.GetChangedOrderItemInformation(Arg.Any<IEnumerable<ChangedOrderItemResult>>()).Returns(ExpectedChangedOrderItemsInformation);
         }
 
         protected override void When()
@@ -58,13 +58,13 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         [Then]
         public void SåSkaCustomerServiceBlivitAnropadKorrekt()
         {
-            CustomerService.Received(1).GetCustomerByIdAsync(CustomerId);
+            CustomerServiceMock.Received(1).GetCustomerByIdAsync(CustomerId);
         }
 
         [Then]
         public void SåSkaShipmentServiceBlivitAnropadKorrekt()
         {
-            ShipmentService.Received(1).GetAllNotShippedShipmentsByCustomerIdAsync(CustomerId);
+            ShipmentServiceMock.Received(1).GetAllNotShippedShipmentsByCustomerIdAsync(CustomerId);
         }
 
         [Then]
@@ -72,14 +72,14 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentLoaderTests
         {
             foreach (var model in _ordersToShip)
             {
-                ChangedOrderItemsLoader.Received(1).GetChangedOrderItemsAsync(model);
+                ChangedOrderItemsLoaderMock.Received(1).GetChangedOrderItemsAsync(model);
             }
         }
 
         [Then]
         public void SåSkaChangedOrderItemsInformationLoaderBlivitAnropadFörAllaModeller()
         {
-            ChangedOrderItemsInformationLoader.Received(3).GetChangedOrderItemInformation(Arg.Any<ChangedOrderItemResult[]>());
+            ChangedOrderItemsInformationLoaderMock.Received(3).GetChangedOrderItemInformation(Arg.Any<ChangedOrderItemResult[]>());
         }
 
         [Then]

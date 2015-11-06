@@ -39,8 +39,8 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
             _orderShipmentViewModel = Substitute.For<IOrderShipmentViewModel>();
 
             ViewModel.PropertyChanged += (sender, args) => _raisedProperties.Add(args.PropertyName);
-            Loader.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.Select(x => new OrderShipmentLoadResult { Model = x, ChangedOrderInformation = string.Format(ExpectedChangedOrderInformationFormat, x.Id)}).ToList()}));
-            ViewModelFactory.CreateOrderShipmentViewModel().Returns(_orderShipmentViewModel);
+            LoaderMock.LoadAsync(Arg.Any<int>()).Returns(Task.FromResult(new ShipmentLoadResult {Customer = _customer, OrdersToShip = _models.Select(x => new OrderShipmentLoadResult { Model = x, ChangedOrderInformation = string.Format(ExpectedChangedOrderInformationFormat, x.Id)}).ToList()}));
+            ViewModelFactoryMock.CreateOrderShipmentViewModel().Returns(_orderShipmentViewModel);
         }
 
         protected override void When()
@@ -51,13 +51,13 @@ namespace TDD.Demo.Presentation.Test.Shipments.ShipmentViewModelTests
         [Then]
         public void SåHarLoadernBlivitAnropadKorrekt()
         {
-            Loader.Received(1).LoadAsync(CustomerId);
+            LoaderMock.Received(1).LoadAsync(CustomerId);
         }
 
         [Then]
         public void SåHarViewModelFactoryBlivitAnropadKorrektAntalGånger()
         {
-            ViewModelFactory.Received(5).CreateOrderShipmentViewModel();
+            ViewModelFactoryMock.Received(5).CreateOrderShipmentViewModel();
         }
 
         [Then]
