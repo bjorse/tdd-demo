@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using TDD.Demo.Presentation.Shipments.Loaders;
 using TDD.Demo.TestTools;
@@ -109,7 +110,17 @@ namespace TDD.Demo.Presentation.Test.Shipments.ChangedOrderItemsInformationLoade
         [Then]
         public void SåSkaAllaRaderVaraKorrektOchIRättOrdning()
         {
-            Assert.IsTrue(_expectedResult.SequenceEqual(_result));
+            if (_expectedResult.SequenceEqual(_result))
+            {
+                return;
+            }
+
+            var errorMessage = string.Join(Environment.NewLine, new[] {"Expected result:"}
+                                     .Concat(_expectedResult)
+                                     .Concat(new[] {string.Empty, "But was:"})
+                                     .Concat(_result));
+
+            throw new AssertionException(errorMessage);
         }
     }
 }
