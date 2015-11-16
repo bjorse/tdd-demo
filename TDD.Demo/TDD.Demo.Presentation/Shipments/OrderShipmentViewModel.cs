@@ -24,7 +24,7 @@ namespace TDD.Demo.Presentation.Shipments
 
             MarkItemAsPackedCommand = new DelegateCommand(MarkItemAsPackedAction);
             SaveCommand = new DelegateCommand(SaveAction);
-            ShipOrderCommand = new DelegateCommand(ShipOrderAction, () => CanShip);
+            ShipOrderCommand = new DelegateCommand(ShipOrderAction, CanShip);
         }
 
         public void Initialize(CustomerModel customer, OrderShipmentModel orderShipment, string changedOrderInformation)
@@ -109,9 +109,9 @@ namespace TDD.Demo.Presentation.Shipments
 
         public ICommand ShipOrderCommand { get; private set; }
 
-        public bool CanShip
+        private bool CanShip()
         {
-            get { return Model != null && Model.Items.All(x => x.IsPackaged); }
+            return Model != null && Model.Items.All(x => x.IsPackaged);
         }
 
         private void MarkItemAsPackedAction()
@@ -126,7 +126,7 @@ namespace TDD.Demo.Presentation.Shipments
             selectedItem.Model.IsPackaged = true;
 
             ResetItemLists();
-            RaisePropertyChanged(() => CanShip);
+            RaisePropertyChanged(() => ShipOrderCommand);
         }
 
         private async void SaveAction()

@@ -32,14 +32,14 @@ namespace TDD.Demo.Application.Orders
                     throw new ArgumentException(string.Format("This order cannot be changed because it has been shipped!"));
                 }
 
-                var savedOrder = _entitySaver.Save(order, RevisionPolicy.OnlyNewRevision);
+                var savedOrder = _entitySaver.Save(context, order, RevisionPolicy.OnlyNewRevision);
 
                 if (latestOrderShipment != null)
                 {
                     latestOrderShipment.OrderRevision = savedOrder.Id;
                     latestOrderShipment.Items = _shipmentOrderItemsUpdater.UpdateOrderItems(latestOrderShipment.Items, savedOrder.Items);
 
-                    _entitySaver.Save(latestOrderShipment, RevisionPolicy.OnlyNewRevision);
+                    _entitySaver.Save(context, latestOrderShipment, RevisionPolicy.OnlyNewRevision);
                 }
 
                 context.SaveChanges();
