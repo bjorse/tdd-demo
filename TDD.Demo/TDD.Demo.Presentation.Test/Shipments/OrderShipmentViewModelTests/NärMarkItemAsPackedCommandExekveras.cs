@@ -63,7 +63,7 @@ namespace TDD.Demo.Presentation.Test.Shipments.OrderShipmentViewModelTests
         [Then]
         public void SåSkaPropertynCanShipRaisats()
         {
-            Assert.IsTrue(_raisedProperties.Contains("CanShip"));
+            Assert.IsTrue(_raisedProperties.Contains("ShipOrderCommand"));
         }
 
         [Then]

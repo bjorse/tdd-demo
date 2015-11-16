@@ -62,8 +62,6 @@
     <Compile Include="Shipments\OrderListItemViewModelTests\NärSilentDeselectAnropasOchIsSelectedÄrRedanFalse.cs" />
     <Compile Include="Shipments\OrderListItemViewModelTests\NärSilentDeselectAnropasOchIsSelectedÄrTrue.cs" />
     <Compile Include="Shipments\OrderShipmentViewModelFactoryTests\NärCreateAnropas.cs" />
-    <Compile Include="Shipments\OrderShipmentViewModelTests\CanShip\NärAllaItemsÄrPaketerade.cs" />
-    <Compile Include="Shipments\OrderShipmentViewModelTests\CanShip\NärInteAllaItemsÄrPaketerade.cs" />
     <Compile Include="Shipments\OrderShipmentViewModelTests\GivetEnOrderShipmentViewModel.cs" />
     <Compile Include="Shipments\OrderShipmentViewModelTests\NärMarkItemAsPackedCommandExekveras.cs" />
     <Compile Include="Shipments\OrderShipmentViewModelTests\NärDenInitieras.cs" />
