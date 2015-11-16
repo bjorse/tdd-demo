@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TDD.Demo.Domain;
 using TDD.Demo.Domain.Customers;
-using TDD.Demo.Domain.Shipments;
 using TDD.Demo.Presentation.Shipments.Loaders;
 
 namespace TDD.Demo.Presentation.Shipments
