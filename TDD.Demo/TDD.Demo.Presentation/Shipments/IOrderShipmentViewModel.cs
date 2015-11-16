@@ -26,7 +26,5 @@ namespace TDD.Demo.Presentation.Shipments
         ICommand SaveCommand { get; }
 
         ICommand ShipOrderCommand { get; }
-
-        bool CanShip { get; }
     }
 }
